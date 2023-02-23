@@ -1,9 +1,11 @@
+import json
+
 from node import Node
 
 
 class Graph:
     def __init__(self):
-        self.relationships = []
+        # self.relationships = []
         self.nodes = {}
 
     def add_relationship(self, subject_name: str, relationship_name: str, target_name: str) -> None:
@@ -11,7 +13,7 @@ class Graph:
         target = self.add_node(target_name)
         subject.connections[relationship_name] = target_name
 
-    def add_node(self, name:str) -> Node:
+    def add_node(self, name: str) -> Node:
         if name not in self.nodes:
             node = Node(name)
             self.nodes[name] = node
@@ -19,5 +21,6 @@ class Graph:
         else:
             return self.nodes[name]
 
-
-
+    def to_json(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True)
