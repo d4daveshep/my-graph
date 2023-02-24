@@ -3,7 +3,7 @@ from graph import Graph
 
 def parse_line(line) -> tuple:
     data = line.strip().split(',')
-    return tuple(data[:3])
+    return tuple([data[0], data[-1]])
 
 
 if __name__ == "__main__":
@@ -11,13 +11,13 @@ if __name__ == "__main__":
 
     graph = Graph()
 
-    with open("./staff_list.csv") as csv_file:
-        for _ in range(9):
+    with open("./time_by_task_20230220.csv") as csv_file:
+        for _ in range(1):
             line = csv_file.readline()
         while line:
-            name, gm, employment_type = parse_line(line)
-            graph.add_relationship(name, "under GM", gm)
-            graph.add_relationship(name, "employment", employment_type)
+            client, name = parse_line(line)
+
+            graph.add_relationship(name, "worked on", client)
             line = csv_file.readline()
 
     with open("./knowledge.json", "at") as json_file:

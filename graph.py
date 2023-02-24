@@ -21,6 +21,5 @@ class Graph:
         else:
             return self.nodes[name]
 
-    def to_json(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True)
+    def to_json(self) -> str:
+        return json.dumps(self, default=lambda o: o.__dict__, indent=4, sort_keys=True)
