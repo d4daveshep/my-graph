@@ -11,8 +11,9 @@ if __name__ == "__main__":
 
     graph = Graph()
 
-    with open("./graph/staff_list.csv") as csv_file:
-        line = csv_file.readline()
+    with open("./staff_list.csv") as csv_file:
+        for _ in range(9):
+            line = csv_file.readline()
         while line:
             name, gm, employment_type = parse_line(line)
             graph.add_relationship(name, "under GM", gm)
