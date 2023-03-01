@@ -3,3 +3,7 @@ class Node:
         self.name = name
         self.connections = {}
 
+    def to_json(self) -> str:
+        return '{"name":"' + self.name + '"}'
+
+

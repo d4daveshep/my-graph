@@ -4,6 +4,7 @@ from graph import Graph
 import pytest
 
 from graph import Graph
+from node import Node
 
 
 @pytest.fixture()
@@ -22,6 +23,9 @@ def test_create_nodes():
     assert "Andrew" in graph.nodes
     assert len(graph.nodes["Andrew"].connections) == 0
 
+def test_node_to_json():
+    n = Node("Andrew")
+    assert n.to_json() == '{"name":"Andrew"}'
 
 def test_create_relationship():
     graph = Graph()
